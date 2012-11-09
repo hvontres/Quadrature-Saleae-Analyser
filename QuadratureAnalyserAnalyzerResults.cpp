@@ -102,7 +102,7 @@ void QuadratureAnalyserAnalyzerResults::GenerateBubbleText( U64 frame_index, Cha
 			AddResultString(str);
 
 			if (mSettings->ticksPerRotation != 0) {
-			rotation = posCnt / mSettings->ticksPerRotation;
+			rotation = float(posCnt) / float(mSettings->ticksPerRotation);
 
 			snprintf(buff, sizeof(buff), " to position %f", rotation);
 			strncat(str, buff,sizeof(str)-1);

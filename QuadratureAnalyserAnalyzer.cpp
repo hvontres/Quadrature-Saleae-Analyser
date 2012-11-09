@@ -18,6 +18,7 @@
 #include "QuadratureAnalyserAnalyzer.h"
 #include "QuadratureAnalyserAnalyzerSettings.h"
 #include <AnalyzerChannelData.h>
+#include <stdlib.h>
 
 static change_t qe_decode(unsigned char olda, unsigned char oldb, unsigned char newa, unsigned char newb) 
 {
@@ -83,7 +84,7 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 
 	U32 glitchCount = 0;
 	U32 tickCount = 0;
-	S64 posCount = 0;
+	int64_t posCount = 0;
 
 	for( ; ; )
 	{
@@ -133,7 +134,7 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 			mResults->AddMarker( c, m, mSettings->mInputChannelB );
 			result ++;
 			tickCount++;
-			posCount += (m == CLOCKWISE) ?  -1 : 1;
+			posCount += (dir == CLOCKWISE) ?  1 : -1;
 
 			lastEnd = curEnd;
 			curEnd = c;
