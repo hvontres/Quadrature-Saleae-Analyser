@@ -83,7 +83,7 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 
 	U32 glitchCount = 0;
 	U32 tickCount = 0;
-	int64_t posCount = 0;
+	S64 posCount = 0;
 
 	for( ; ; )
 	{

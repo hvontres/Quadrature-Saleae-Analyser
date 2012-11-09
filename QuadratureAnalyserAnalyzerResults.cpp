@@ -21,6 +21,9 @@
 #include "QuadratureAnalyserAnalyzerSettings.h"
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 QuadratureAnalyserAnalyzerResults::QuadratureAnalyserAnalyzerResults( QuadratureAnalyserAnalyzer* analyzer, QuadratureAnalyserAnalyzerSettings* settings )
 :	AnalyzerResults(),

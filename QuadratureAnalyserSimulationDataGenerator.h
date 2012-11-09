@@ -22,7 +22,7 @@
 #include <SimulationChannelDescriptor.h>
 #include <AnalyzerHelpers.h>
 
-#include <string>
+#include <string.h>
 
 class QuadratureAnalyserAnalyzerSettings;
 

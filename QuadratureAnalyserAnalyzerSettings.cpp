@@ -18,6 +18,9 @@
 
 #include "QuadratureAnalyserAnalyzerSettings.h"
 #include <AnalyzerHelpers.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 
 
 QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
