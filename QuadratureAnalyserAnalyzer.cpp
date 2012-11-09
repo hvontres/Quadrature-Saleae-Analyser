@@ -84,7 +84,8 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 
 	U32 glitchCount = 0;
 	U32 tickCount = 0;
-	int64_t posCount = 0;
+	U64 posCount = POSOFFSET; //reset posCount to Center Range to preserve sign during packing and Unpacking - Range is +/- 31 Bits
+	//U64 posCountOut = 0;
 
 	for( ; ; )
 	{
@@ -148,7 +149,7 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 			//
 			if (glitchCount != 0 || lastDir != GLITCH) {
 				Frame frame;
-	
+				//posCountOut=posCount+POSOFFSET; // Add 31 bit Offset to make posCountOut positive
 				frame.mData1 = (posCount << 32) | lastDir;
 				frame.mData2 = ((U64)tickCount << 32) | (glitchCount << 0);
 				frame.mFlags = 0;

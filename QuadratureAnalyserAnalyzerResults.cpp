@@ -59,7 +59,7 @@ void QuadratureAnalyserAnalyzerResults::GenerateBubbleText( U64 frame_index, Cha
 	char str[512];
 
 	change_t dir = (change_t) (frame.mData1 & 0xF);
-	int64_t posCnt =   (frame.mData1 >> 32) & 0xFFFFFFFF;
+	int64_t posCnt =   ((frame.mData1 >> 32) & 0xFFFFFFFF)-POSOFFSET;
 	U32 gltchCnt = (frame.mData2 >>  0) & 0xFFFFFFFF;
 	U32 tocksCnt = (frame.mData2 >> 32) & 0xFFFFFFFF;
 
@@ -102,7 +102,7 @@ void QuadratureAnalyserAnalyzerResults::GenerateBubbleText( U64 frame_index, Cha
 			AddResultString(str);
 
 			if (mSettings->ticksPerRotation != 0) {
-			rotation = float(posCnt) / float(mSettings->ticksPerRotation);
+			rotation = (float) posCnt / mSettings->ticksPerRotation;
 
 			snprintf(buff, sizeof(buff), " to position %f", rotation);
 			strncat(str, buff,sizeof(str)-1);

@@ -26,6 +26,7 @@
 #define MYVERSION "QuadratureAnalyser/1.02"
 
 #define SCANRATE (100)
+#define POSOFFSET 0X80000000  // 31 Bit offset to remove sign from posCount
 typedef enum change_t { STANDSTILL = 0, CLOCKWISE, COUNTERCW, GLITCH };
 
 class QuadratureAnalyserAnalyzerSettings;
