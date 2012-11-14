@@ -1,3 +1,5 @@
+/* Modifications Copyright 2012 Henry von Tresckow (hvontres(at)gmail(dot)com
+
 /* Copyright 2011 Dirk-Willem van Gulik, All Rights Reserved.
  *                dirkx(at)webweaving(dot)org
  *
@@ -75,6 +77,7 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 
 	U8 mLastA = mChannelA->GetBitState() == BIT_HIGH ? 1 : 0;
 	U8 mLastB = mChannelB->GetBitState() == BIT_HIGH ? 1 : 0;
+	
 
 	change_t lastDir = GLITCH;
 
@@ -85,7 +88,7 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 	U32 glitchCount = 0;
 	U32 tickCount = 0;
 	U64 posCount = POSOFFSET; //reset posCount to Center Range to preserve sign during packing and Unpacking - Range is +/- 31 Bits
-	//U64 posCountOut = 0;
+	
 
 	for( ; ; )
 	{
@@ -144,7 +147,8 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 			glitchCount++;
 			break;
 		};
-		if (dir != lastDir) {
+
+		if (dir != lastDir || (tickCount >= mSettings->ticksPerFrame && mSettings->ticksPerFrame)) {
 			// skip any initial glitches. We're not sure what they are anyway.
 			//
 			if (glitchCount != 0 || lastDir != GLITCH) {

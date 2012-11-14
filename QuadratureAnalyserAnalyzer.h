@@ -1,3 +1,5 @@
+/* Modifications Copyright 2012 Henry von Tresckow (hvontres(at)gmail(dot)com
+
 /* Copyright 2011 Dirk-Willem van Gulik, All Rights Reserved.
  *                dirkx(at)webweaving(dot)org
  *
@@ -27,6 +29,7 @@
 
 #define SCANRATE (100)
 #define POSOFFSET 0X80000000  // 31 Bit offset to remove sign from posCount
+#define MAXFRAME  0.99
 typedef enum change_t { STANDSTILL = 0, CLOCKWISE, COUNTERCW, GLITCH };
 
 class QuadratureAnalyserAnalyzerSettings;

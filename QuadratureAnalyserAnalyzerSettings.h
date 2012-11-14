@@ -1,3 +1,5 @@
+/* Modifications Copyright 2012 Henry von Tresckow (hvontres(at)gmail(dot)com
+
 /* Copyright 2011 Dirk-Willem van Gulik, All Rights Reserved.
  *                dirkx(at)webweaving(dot)org
  *
@@ -36,11 +38,13 @@ public:
 	Channel mInputChannelA;
 	Channel mInputChannelB;
 	U32 ticksPerRotation;
+	U32 ticksPerFrame;
 
 protected:
 	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mInputChannelAInterface;
 	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mInputChannelBInterface;
 	std::auto_ptr< AnalyzerSettingInterfaceInteger >	mTicksPerRotationInterface;
+	std::auto_ptr< AnalyzerSettingInterfaceInteger >	mTicksPerFrameInterface;
 };
 
 #endif //QUADRATUREANALYSER_ANALYZER_SETTINGS

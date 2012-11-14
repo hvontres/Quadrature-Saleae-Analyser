@@ -1,3 +1,5 @@
+/* Modifications Copyright 2012 Henry von Tresckow (hvontres(at)gmail(dot)com
+
 /* Copyright 2011 Dirk-Willem van Gulik, All Rights Reserved.
  *                dirkx(at)webweaving(dot)org
  *
@@ -42,10 +44,18 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 	mTicksPerRotationInterface->SetMax( 1e12 );
 	mTicksPerRotationInterface->SetMin( 0 );
 	mTicksPerRotationInterface->SetInteger( ticksPerRotation);
+	
+	mTicksPerFrameInterface.reset( new AnalyzerSettingInterfaceInteger() );
+	mTicksPerFrameInterface->SetTitleAndTooltip( "Max Impules/Frame",  
+		"Specify the maximum number of changes per Frame. Set to '0' to ignore - only use direction changes.");
+	mTicksPerFrameInterface->SetMax( 1e12 );
+	mTicksPerFrameInterface->SetMin( 0 );
+	mTicksPerFrameInterface->SetInteger( ticksPerFrame);
 
 	AddInterface( mInputChannelAInterface.get() );
 	AddInterface( mInputChannelBInterface.get() );
 	AddInterface( mTicksPerRotationInterface.get() );
+	AddInterface( mTicksPerFrameInterface.get() );
 
 	AddExportOption( 0, "Export as text/csv file" );
 	AddExportExtension( 0, "text", "txt" );
@@ -65,6 +75,7 @@ bool QuadratureAnalyserAnalyzerSettings::SetSettingsFromInterfaces()
 	mInputChannelA = mInputChannelAInterface->GetChannel();
 	mInputChannelB = mInputChannelBInterface->GetChannel();
 	ticksPerRotation = mTicksPerRotationInterface->GetInteger();
+	ticksPerFrame = mTicksPerFrameInterface->GetInteger();
 
 	ClearChannels();
 	AddChannel( mInputChannelA, "Quadrature A", true);
@@ -78,6 +89,7 @@ void QuadratureAnalyserAnalyzerSettings::UpdateInterfacesFromSettings()
 	mInputChannelAInterface->SetChannel( mInputChannelA );
 	mInputChannelBInterface->SetChannel( mInputChannelB );
 	mTicksPerRotationInterface->SetInteger( ticksPerRotation );
+	mTicksPerFrameInterface->SetInteger( ticksPerFrame );
 }
 
 void QuadratureAnalyserAnalyzerSettings::LoadSettings( const char* settings )
@@ -88,6 +100,7 @@ void QuadratureAnalyserAnalyzerSettings::LoadSettings( const char* settings )
 	text_archive >> mInputChannelA;
 	text_archive >> mInputChannelB;
 	text_archive >> ticksPerRotation;
+	text_archive >> ticksPerFrame;
 
 	ClearChannels();
         AddChannel( mInputChannelA, "Quadrature A", true);
@@ -103,6 +116,7 @@ const char* QuadratureAnalyserAnalyzerSettings::SaveSettings()
 	text_archive << mInputChannelA;
 	text_archive << mInputChannelB;
 	text_archive << ticksPerRotation;
+	text_archive << ticksPerFrame;
 
 	return SetReturnString( text_archive.GetString() );
 }

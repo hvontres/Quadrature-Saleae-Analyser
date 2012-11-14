@@ -1,3 +1,6 @@
+/* Modifications Copyright 2012 Henry von Tresckow (hvontres(at)gmail(dot)com
+
+
 /* Copyright 2011 Dirk-Willem van Gulik, All Rights Reserved.
  *                dirkx(at)webweaving(dot)org
  *
@@ -160,7 +163,7 @@ void QuadratureAnalyserAnalyzerResults::GenerateExportFile( const char* file, Di
 		file_stream << from << "," << till;
 
 		change_t dir = (change_t) (frame.mData1 & 0xF);
-		int64_t posCnt = (frame.mData1 >> 32) & 0xFFFFFFFF;
+		int64_t posCnt = ((frame.mData1 >> 32) & 0xFFFFFFFF)-POSOFFSET;
 		U32 gltchCnt = (frame.mData2 >>  0) & 0xFFFFFFFF;
 		U32 tocksCnt = (frame.mData2 >> 32) & 0xFFFFFFFF;
 
